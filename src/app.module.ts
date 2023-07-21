@@ -2,21 +2,13 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Person } from './person.entity';
+import config from './typeorm.config';
+import { PersonService } from './person.service';
 
 @Module({
-  imports: [
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: '123456',
-      database: 'main',
-      entities: [],
-      synchronize: true,
-    }),
-  ],
+  imports: [TypeOrmModule.forRoot(config), TypeOrmModule.forFeature([Person])],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, PersonService], // Add the PersonService as a provider here
 })
 export class AppModule {}
