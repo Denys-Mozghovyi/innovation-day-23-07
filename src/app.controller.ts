@@ -1,12 +1,13 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+// src/app.controller.ts
+import { Controller, Get, Param } from '@nestjs/common';
+import { PersonService } from './person.service';
 
-@Controller()
+@Controller('api/person')
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly personService: PersonService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Get(':id')
+  async getPerson(@Param('id') id: number) {
+    return this.personService.getPersonById(id);
   }
 }
