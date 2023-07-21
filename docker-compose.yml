@@ -6,7 +6,7 @@ services:
     environment:
       - MYSQL_DATABASE=main
       - MYSQL_ROOT_PASSWORD=123456
-      - DATABASE_HOST=innovation-day-23-07-db
+      - DATABASE_HOST=localhost
       - LOCAL_DATABASE_PORT=3306
     ports:
       - "3306:3306"
